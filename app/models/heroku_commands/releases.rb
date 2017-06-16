@@ -33,7 +33,9 @@ module HerokuCommands
         app = Escobar::Heroku::App.new(client, application_for_releases)
 
         releases = app.releases_json
+	puts releases.inspect
         deploys = github_client.deployments
+	puts deploys.inspect
 
         response = ::Parse::Releases.new(releases, deploys, github_repository)
         response_for_releases(response.markdown)
