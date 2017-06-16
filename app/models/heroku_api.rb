@@ -112,6 +112,7 @@ class HerokuApi
     @client ||= Faraday.new(url: "https://api.heroku.com") do |c|
       c.use :instrumentation
       c.use ZipkinTracer::FaradayHandler, "api.heroku.com"
+      c.response :logger
       c.adapter Faraday.default_adapter
     end
   end
